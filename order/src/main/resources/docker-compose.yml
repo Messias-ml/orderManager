@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'guide-mysql'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=orderDB'
+      - 'MYSQL_PASSWORD=apiMessias'
+      - 'MYSQL_ROOT_PASSWORD=apiMessias'
+      - 'MYSQL_USER=messiasApi'
+    ports:
+      - '3306:3306'
