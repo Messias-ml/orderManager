@@ -1,6 +1,7 @@
 package messiasproject.microservicespecialist.order.application.handler;
 
 import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,16 +11,17 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Schema(description = "Detalhes do problema de erro")
 public class Problem {
-    @ApiModelProperty(example = "400")
+    @Schema(example = "400", description = "status http do erro")
     private Integer status;
-    @ApiModelProperty(example = "faltou um atributo para ser preenchido")
+    @Schema(example = "Registro não existente", description = "titulo do erro")
     private String title;
 
-    @ApiModelProperty(example = "O atributo X precisa ser preenchido com um Interger para ser valido.")
+    @Schema(example = "O registro com o codigo op-234tr não existe no banco de dados.", description = "detalhe para o consumidor sobre o erro")
     private String detail;
 
-    @ApiModelProperty(example = "O campo idade precisa ser preenchido com um numero e não como uma frase")
+    @Schema(example = "O Pedido que você buscou não existe", description = "detalhe para o usurio sobre o erro")
     private String messageUser;
 
     public Problem(Problem problem) {

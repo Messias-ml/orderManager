@@ -20,6 +20,10 @@ import io.swagger.v3.oas.annotations.servers.Server;
                 @Server(
                         description = "local server",
                         url = "http://localhost:8080/order"
+                ),
+                @Server(
+                        description = "Eureka server",
+                        url = "http://localhost:8761/"
                 )
         }
 )public class OpenApiConfig {

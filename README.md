@@ -101,3 +101,106 @@
 > 
 > - Pensando em você disponibilizei meu postman também ja com as devidas requisições assinaladas, é so pegar o arquivo post que deixei no projeto e importar no seu postman.
 
+~~~json
+{
+	"info": {
+		"_postman_id": "02fff12d-0775-4d64-ad58-950f7a22b647",
+		"name": "order",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Product API TEST",
+			"item": [
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"fone\",\r\n    \"unitaryValue\": 55.0,\r\n    \"count\": 3\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order",
+								"product"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Order",
+			"item": [
+				{
+					"name": "Recive Order Externo A",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"uuid\": \"op-234tr\",\r\n    \"listOrderItem\": [\r\n        {\r\n            \"idProduct\": 1,\r\n            \"count\": 3,\r\n            \"price\": 2420.0\r\n        },\r\n        {\r\n            \"idProduct\": 2,\r\n            \"count\": 2,\r\n            \"price\": 1235.3\r\n        },\r\n        {\r\n            \"idProduct\": 3,\r\n            \"count\": 4,\r\n            \"price\": 55\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get list order to EXTERNO B",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/order?time=27-11-2024T16:00:00.000",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"order"
+							],
+							"query": [
+								{
+									"key": "time",
+									"value": "27-11-2024T16:00:00.000"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
+~~~
