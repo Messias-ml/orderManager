@@ -21,7 +21,7 @@ public class ReciveOrderImplementation implements ReciveOrder {
         if(uuidIsPresent){
             throw new DuplicateOrder(new Object[]{order.getUuid()});
         }
-        
+
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setUuid(order.getUuid());
         orderEntity.setStatus(OrderStatus.RECEBIDO);
