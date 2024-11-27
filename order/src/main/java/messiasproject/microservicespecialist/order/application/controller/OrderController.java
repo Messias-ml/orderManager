@@ -1,6 +1,8 @@
 package messiasproject.microservicespecialist.order.application.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import messiasproject.microservicespecialist.order.application.model.DTO.OrderClientDTO;
 import messiasproject.microservicespecialist.order.application.model.DTO.OrderRecivedDTO;
@@ -29,7 +31,7 @@ public class OrderController implements OrderOpenApi {
     private final OrderService service;
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void reciveOrder(@RequestBody OrderRecivedDTO order){
+    public void reciveOrder(@RequestBody @Valid OrderRecivedDTO order){
         service.reciveOrder(order);
     }
 
