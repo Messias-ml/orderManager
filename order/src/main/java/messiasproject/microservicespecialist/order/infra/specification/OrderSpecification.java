@@ -26,7 +26,7 @@ public class OrderSpecification implements Specification<OrderEntity> {
         List<Predicate> predicates = new ArrayList<>();
         if (null != time){
             if (time.getTime() != null){
-            predicates.add(criteriaBuilder.greaterThanOrEqualTo(root.get("dateCreation"), time.getTime()));
+            predicates.add(criteriaBuilder.between(root.get("dateCreation"), time.getTime(), time.getTime().plusMinutes(59L)));
             } else if (time.getInitiate() != null && time.getTerminate() != null) {
                 predicates.add(criteriaBuilder.between(root.get("dateCreation"), time.getInitiate(), time.getTerminate()));
             }

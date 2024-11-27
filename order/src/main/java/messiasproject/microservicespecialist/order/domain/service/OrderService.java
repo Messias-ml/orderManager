@@ -27,8 +27,6 @@ public class OrderService {
 
     private final ReciveOrder reciveOrder;
 
-    private final ItemOrderRepository itemOrderRepository;
-
     private final SearchOrderByUuid searchOrderByUuid;
 
     private final SearchOrderByData searchOrderByData;
@@ -42,27 +40,11 @@ public class OrderService {
         repository.save(orderEntity);
         repository.flush();
     }
-
-    public OrderEntity findById(Long id) {
-        OrderEntity orderEntity = repository.findById(id).get();
-        return orderEntity;
-    }
-
     public OrderClientDTO searchOrderByUuid(String uuid) {
         return searchOrderByUuid.search(uuid);
     }
 
-    public List<ItemOrderEntity> findAllItemOrder() {
-        List<ItemOrderEntity> all = itemOrderRepository.findAll();
-        return all;
-    }
-
     public Page<OrderClientDTO> searchOrderByData(Pageable page, OrderFilterSpec orderFilterSpec) {
         return searchOrderByData.search(page, orderFilterSpec);
-    }
-
-    public List<OrderEntity> findAllOrder() {
-        List<OrderEntity> all = repository.findAll();
-        return all;
     }
 }

@@ -1,5 +1,6 @@
 package messiasproject.microservicespecialist.order.application.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import messiasproject.microservicespecialist.order.application.model.DTO.ProductDTO;
 import messiasproject.microservicespecialist.order.domain.model.entity.ProductEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("order/product")
 @RequiredArgsConstructor
+@Tag(name = "Product", description = "Api de TESTE apenas para facilitar a inclusão de pedidos para testes do sistema")
 public class ProductController {
 
     private final ProductService service;
