@@ -43,7 +43,7 @@
 > > 
 >> **Beneficios:**
 > >
-> > Com microservice eu consigo crescer a aplicação futuramente e conectar a outro banco de dados como o de produto que é externo ao nosso e a comunicação entre produtos externos como estamos fazendo fica muito mais dinamica e facil sem a necessidade de sobrecarregar meu banco com dados de produtos, pedidos, clientes, items e etc.
+> > Com microservice eu consigo crescer a aplicação futuramente e conectar a outro banco de dados como o de produto que é externo ao nosso (ou deveria ser, mas para ficar mais didatico coloquei junto) e a comunicação entre produtos externos, fica muito mais dinamica e facil sem a necessidade de sobrecarregar meu banco com dados com informações de produtos, pedidos, clientes, items e etc.
 > 
 > > <h4 style="font-weight:800"> Eureka Server</h4>
 > >
