@@ -56,7 +56,7 @@
 >
 > > <h4 style="font-weight:800"> Open API</h4>
 >>
->> Se torna EXCENCIAL quando se tem uma aplicação que alguem irá consumir, alias, fazemos a aplicação com o intuito de alguém consumir e muitas vezes e 98% das vezes as pessoas se esquecem dos consumidores dificultando a vida deles
+>> Se torna ESSENCIAL quando se tem uma aplicação que alguem irá consumir, alias, fazemos a aplicação com o intuito de alguém consumir e muitas vezes e 98% das vezes as pessoas se esquecem dos consumidores dificultando a vida deles
 > > no consumo da API.
 > > Diferente de mim, eu tenho a visão de que criamos a aplicação para facilitar a vida do front o que se faz necessario a especialização em uma documentação para eles.
 > > Mostro minha apidão e especilização em Open Api neste projeto, criando uma documentação fantastica para o front da aplicação consumir, com riquezas de detalhes.
