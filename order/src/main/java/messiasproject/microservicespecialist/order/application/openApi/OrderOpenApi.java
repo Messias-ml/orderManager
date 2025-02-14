@@ -1,4 +1,5 @@
 package messiasproject.microservicespecialist.order.application.openApi;
+
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -33,21 +34,25 @@ public interface OrderOpenApi {
     })
     @Operation(summary = "Busca os pedidos, Ele pode ou não receber parametro, o retorno é uma lista paginada com 5 conteúdos por lista para não pesar o sistema! " +
             "se não passar parametro ele retorna do primeiro ao ultimo registro!")
-    Page<OrderClientDTO> searchOrderByData(
-            @Parameter(name = "data pretendida", required = false,
-            description = "data ou hora que pretende consultar. Mesmo sendo hora, deve se passar em formato de data com o time no final (será mostrado)",
-            examples ={
-            @ExampleObject(
-                    name = "time",
-                    summary = "Busca pedidos de uma determinada hora",
-                    description = "utilizando dessa forma você consegue buscar todos os registros feitos no espaço de 1 hora, no exemplo mostra de 1:00H da manha e traz registros até de 2:00H",
-                    value = "http://localhost:8080/order?time=27-11-2024T01:00:00.000"),
-            @ExampleObject(
-                    name = "initiate and Terminate",
-                    summary = "Busca todos os pedidos no intervalo de tempo que selecionar",
-                    description = "o initiate e terminate SEMPRE devem ser usado juntos!",
-                    value = "http://localhost:8080/order?initiate=27-11-2024T01:00:00.000&terminate=29-11-2024T01:00:00.000")
-            }) Pageable page, OrderFilterSpec orderFilterSpec );
+    Page<OrderClientDTO> searchOrderByData(@Parameter(name = "paginação",
+                                                   content = @Content(mediaType = "application/json", schema = @Schema(implementation = PageOpenApi.class)))
+                                           Pageable page,
+
+                                           @Parameter(name = "data pretendida", required = false,
+                                                   description = "data ou hora que pretende consultar. Mesmo sendo hora, deve se passar em formato de data com o time no final (será mostrado)",
+                                                   examples = {
+                                                           @ExampleObject(
+                                                                   name = "time",
+                                                                   summary = "Busca pedidos de uma determinada hora",
+                                                                   description = "utilizando dessa forma você consegue buscar todos os registros feitos no espaço de 1 hora, no exemplo mostra de 1:00H da manha e traz registros até de 2:00H",
+                                                                   value = "http://localhost:8080/order?time=27-11-2024T01:00:00.000"),
+                                                           @ExampleObject(
+                                                                   name = "initiate and Terminate",
+                                                                   summary = "Busca todos os pedidos no intervalo de tempo que selecionar",
+                                                                   description = "o initiate e terminate SEMPRE devem ser usado juntos!",
+                                                                   value = "http://localhost:8080/order?initiate=27-11-2024T01:00:00.000&terminate=29-11-2024T01:00:00.000")
+                                                   })
+                                           OrderFilterSpec orderFilterSpec);
 
 
     @ApiResponses({

@@ -2,25 +2,18 @@ package messiasproject.microservicespecialist.order.application.controller;
 
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import messiasproject.microservicespecialist.order.application.model.DTO.OrderClientDTO;
 import messiasproject.microservicespecialist.order.application.model.DTO.OrderRecivedDTO;
 import messiasproject.microservicespecialist.order.application.model.specification.OrderFilterSpec;
 import messiasproject.microservicespecialist.order.application.openApi.OrderOpenApi;
-import messiasproject.microservicespecialist.order.domain.model.entity.ItemOrderEntity;
-import messiasproject.microservicespecialist.order.domain.model.entity.OrderEntity;
 import messiasproject.microservicespecialist.order.domain.service.OrderService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/order")
