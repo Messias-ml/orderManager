@@ -23,6 +23,7 @@ public class OrderEntity {
 
     @Column(name = "cod_id", nullable = false, unique = true)
     private String uuid;
+
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @ToString.Exclude
     private List<ItemOrderEntity> items = new ArrayList<>();
