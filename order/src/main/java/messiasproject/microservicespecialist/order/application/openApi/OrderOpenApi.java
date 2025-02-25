@@ -59,6 +59,17 @@ public interface OrderOpenApi {
             @ApiResponse(responseCode = "200", description = "Recursos encontrdos"),
             @ApiResponse(responseCode = "400", description = "Registro não existente",
                     content = @Content(mediaType = "application/json", schema = @Schema(implementation = Problem.class)))
+            /*
+            DESSA MANEIRA CONSEGUIMOS DOCUMENTAR 2 ERROS DO MESMO STATUS, EM VALUE: COLOCAMOS O JSON QUE QUEREMOS QUE APAREÇA DE EXEMPLO.
+            content = @Content(mediaType = "application/json",
+            schema = @Schema(implementation = Problem.class),
+            examples = {
+                @ExampleObject(name = "Registro não existente",
+                               value = "{\"status\": 400, \"message\": \"Registro não existente\"}"),
+                @ExampleObject(name = "Registro não encontrado",
+                               value = "{\"status\": 400, \"message\": \"Registro não encontrado\"}")
+            }
+        )*/
     })
     @Operation(summary = "Busca os pedidos pelo codigo, o parametro é obrigatorio e deve ser passado na url: 'url/uuid'")
     OrderClientDTO searchOrderByUuid(@PathVariable String uuid);

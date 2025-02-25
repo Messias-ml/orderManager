@@ -1,6 +1,7 @@
 package messiasproject.microservicespecialist.order.application.model.DTO;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.Data;
 
 import java.util.ArrayList;
