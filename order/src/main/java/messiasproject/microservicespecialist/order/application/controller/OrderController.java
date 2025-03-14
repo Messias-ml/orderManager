@@ -3,10 +3,11 @@ package messiasproject.microservicespecialist.order.application.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import messiasproject.microservicespecialist.order.application.model.DTO.OrderClientDTO;
-import messiasproject.microservicespecialist.order.application.model.DTO.OrderRecivedDTO;
-import messiasproject.microservicespecialist.order.application.model.specification.OrderFilterSpec;
-import messiasproject.microservicespecialist.order.application.openApi.OrderOpenApi;
+import messiasproject.microservicespecialist.order.application.representation.CodeOrder;
+import messiasproject.microservicespecialist.order.application.representation.OrderRepresentation;
+import messiasproject.microservicespecialist.order.application.representation.ReceivingOrder;
+import messiasproject.microservicespecialist.order.application.representation.specification.OrderFilterSpec;
+import messiasproject.microservicespecialist.order.infra.documentation.OrderOpenApi;
 import messiasproject.microservicespecialist.order.domain.service.OrderService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -22,19 +23,20 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController implements OrderOpenApi {
 
     private final OrderService service;
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void reciveOrder(@RequestBody @Valid OrderRecivedDTO order){
-        service.reciveOrder(order);
+    public CodeOrder reciveOrder(@RequestBody @Valid ReceivingOrder order){
+        return service.reciveOrder(order);
     }
 
     @GetMapping("/{uuid}")
-    public OrderClientDTO searchOrderByUuid(@PathVariable("uuid") String uuid){
+    public OrderRepresentation searchOrderByUuid(@PathVariable("uuid") String uuid){
         return service.searchOrderByUuid(uuid);
     }
 
     @GetMapping
-    public Page<OrderClientDTO> searchOrderByData(@PageableDefault(sort = "dateCreation",
+    public Page<OrderRepresentation> searchOrderByData(@PageableDefault(sort = "dateCreation",
             direction = Sort.Direction.DESC, size = 5) Pageable page, OrderFilterSpec orderFilterSpec){
         return service.searchOrderByData(page, orderFilterSpec);
     }

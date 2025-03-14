@@ -1,7 +1,8 @@
 package messiasproject.microservicespecialist.order.infra;
 
-import messiasproject.microservicespecialist.order.application.model.DTO.OrderRecivedDTO;
+import messiasproject.microservicespecialist.order.application.representation.CodeOrder;
+import messiasproject.microservicespecialist.order.application.representation.ReceivingOrder;
 
 public interface ReciveOrder {
-    void reciveOrder(OrderRecivedDTO order);
+    CodeOrder reciveOrder(ReceivingOrder order);
 }

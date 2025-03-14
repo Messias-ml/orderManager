@@ -14,10 +14,6 @@ import java.util.Optional;
 public interface OrderRepository extends JpaRepository<OrderEntity, Long>, JpaSpecificationExecutor<OrderEntity> {
     Boolean existsByUuid(String uuid);
 
-    @Query("SELECT o FROM OrderEntity o LEFT JOIN FETCH o.items it LEFT JOIN FETCH it.product WHERE o.uuid = :uuid")
-    OrderEntity findByUuid(String uuid);
-
-    @Override
-    @Query("SELECT o FROM OrderEntity o LEFT JOIN FETCH o.items WHERE o.id = :id")
-    Optional<OrderEntity> findById(@Param("id") Long id);
+    @Query("SELECT o FROM OrderEntity o WHERE o.uuid = :uuid")
+    Optional<OrderEntity> findByUuid(String uuid);
 }

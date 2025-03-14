@@ -1,21 +1,19 @@
 package messiasproject.microservicespecialist.order.domain.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
-import messiasproject.microservicespecialist.order.domain.model.OrderStatus;
+import messiasproject.microservicespecialist.order.domain.model.enums.OrderStatus;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.UUID;
 
 @Entity
 @Data
 @NoArgsConstructor
 @Table(name = "order_tb")
 public class OrderEntity {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_order", nullable = false)
@@ -23,10 +21,6 @@ public class OrderEntity {
 
     @Column(name = "cod_id", nullable = false, unique = true)
     private String uuid;
-
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    @ToString.Exclude
-    private List<ItemOrderEntity> items = new ArrayList<>();
 
     @Column(name = "total_value", scale = 2)
     private Double totalValue;
@@ -38,12 +32,8 @@ public class OrderEntity {
     private LocalDateTime dateCreation;
 
     @PrePersist
-    private void setDateCreation(){
+    private void setPrePersist(){
+        uuid = "or-" + UUID.randomUUID().toString().replaceAll("[^a-zA-Z0-9]", "").substring(0, 10);
         dateCreation = LocalDateTime.now();
-    }
-
-    public void insertItems(List<ItemOrderEntity> items){
-        this.items.clear();
-        this.items.addAll(items);
     }
 }

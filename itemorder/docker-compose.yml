@@ -1,0 +1,11 @@
+services:
+  mysql:
+    container_name: 'item-order-mysql'
+    image: 'mysql:latest'
+    environment:
+      - 'MYSQL_DATABASE=itemOrderDB'
+      - 'MYSQL_PASSWORD=apiMessias'
+      - 'MYSQL_ROOT_PASSWORD=apiMessias'
+      - 'MYSQL_USER=messiasApi'
+    ports:
+      - '3308:3306'

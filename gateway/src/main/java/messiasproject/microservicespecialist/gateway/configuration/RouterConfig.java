@@ -13,6 +13,7 @@ public class RouterConfig {
         return builder
                 .routes()
                 .route(r -> r.path("/order/**").uri("lb://order"))
+                .route(r -> r.path("/product/**").uri("lb://product"))
                 .build();
     }
 }
