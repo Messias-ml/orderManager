@@ -1,4 +1,4 @@
-package messiasproject.microservicespecialist.order.config.util.modelmapper;
+package messiasproject.microservicespecialist.order.config.util.enums;
 
 public enum MessagesToError {
     MENSAGE_ERRO_VALIDATION("erro.validation"),

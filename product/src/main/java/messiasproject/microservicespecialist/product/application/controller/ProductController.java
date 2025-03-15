@@ -28,7 +28,7 @@ public class ProductController {
     }
 
     @GetMapping
-    public Page<ProductEntity> findAllProduct(@PageableDefault(sort = "name",
+    public Page<ProductRepresentation> findAllProduct(@PageableDefault(sort = "name",
             direction = Sort.Direction.DESC) Pageable pageable) {
         return service.findAllProduct(pageable);
     }

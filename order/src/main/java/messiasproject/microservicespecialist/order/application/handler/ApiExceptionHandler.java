@@ -3,7 +3,6 @@ package messiasproject.microservicespecialist.order.application.handler;
 import feign.FeignException;
 import lombok.AllArgsConstructor;
 import messiasproject.microservicespecialist.order.domain.exception.BusinessException;
-import messiasproject.microservicespecialist.order.domain.exception.DuplicateOrder;
 import messiasproject.microservicespecialist.order.domain.exception.ListEmptyException;
 import messiasproject.microservicespecialist.order.domain.exception.RecordDoesntExist;
 import org.springframework.context.MessageSource;
@@ -20,7 +19,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import static messiasproject.microservicespecialist.order.config.util.modelmapper.MessagesToError.*;
+import static messiasproject.microservicespecialist.order.config.util.enums.MessagesToError.*;
 
 @AllArgsConstructor
 @ControllerAdvice
@@ -33,14 +32,6 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         Problem problem = getProblem(BusinessException.getMessage(), BusinessException.getObjects(),
                 nameErro, HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(problem);
-    }
-
-    @ExceptionHandler(DuplicateOrder.class)
-    public ResponseEntity<Problem> hendlerDuplicateOrder(DuplicateOrder duplicateOrder) {
-        String nameErro = "Pedido duplicado";
-        Problem problem = getProblem(duplicateOrder.getMessage(), duplicateOrder.getObjects(),
-                nameErro, HttpStatus.CONFLICT.value());
-        return ResponseEntity.status(HttpStatus.CONFLICT.value()).body(problem);
     }
 
     @ExceptionHandler(RecordDoesntExist.class)

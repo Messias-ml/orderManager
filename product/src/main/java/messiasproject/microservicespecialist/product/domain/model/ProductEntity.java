@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Data
@@ -27,8 +28,6 @@ public class ProductEntity {
 
     @PrePersist
     private void setPrePersist() {
-        if (uuid == null) {
-            uuid = UUID.randomUUID().toString();
-        }
+        uuid = "pr-" + UUID.randomUUID().toString().replaceAll("[^a-zA-Z0-9]", "").substring(0, 10);
     }
 }

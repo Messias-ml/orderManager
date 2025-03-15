@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+import static messiasproject.microservicespecialist.product.config.util.enums.MessagesToError.MENSAGE_ERRO_VALIDATION;
+
 @AllArgsConstructor
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
@@ -35,6 +37,30 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         String nameErro = "Registro não existente";
         Problem problem = getProblem(recordDoesntExist.getMessage(), recordDoesntExist.getObjects(),
                 nameErro, HttpStatus.BAD_REQUEST.value());
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(problem);
+    }
+
+    @Override
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request){
+        return handlerValidationInternal(HttpStatus.BAD_REQUEST, ex.getBindingResult(),MENSAGE_ERRO_VALIDATION.getMessage());
+    }
+
+    private ResponseEntity<Object> handlerValidationInternal(HttpStatus status, BindingResult bindingResult, String message){
+        FieldError fieldError = bindingResult.getFieldError();
+        String nomeDoCampo = "O campo (".concat(fieldError.getField()).concat(") ");
+        String messageUser;
+        if (fieldError.getCode().contains("Min") || fieldError.getCode().contains("Max")){
+            messageUser = nomeDoCampo.concat(messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()));
+        }else {
+            messageUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+        }
+
+        Problem problem = Problem.builder()
+                .status(status.value())
+                .title(getMessage(null, message.concat(".title")))
+                .detail(getMessage(null, message.concat(".detail")))
+                .messageUser(messageUser)
+                .build();
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(problem);
     }
 

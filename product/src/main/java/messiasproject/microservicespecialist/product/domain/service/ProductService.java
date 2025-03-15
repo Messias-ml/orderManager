@@ -3,6 +3,9 @@ package messiasproject.microservicespecialist.product.domain.service;
 import lombok.RequiredArgsConstructor;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
 import messiasproject.microservicespecialist.product.domain.exception.RecordDoesntExist;
+import messiasproject.microservicespecialist.product.infra.CreateProduct;
+import messiasproject.microservicespecialist.product.infra.FindAllProduct;
+import messiasproject.microservicespecialist.product.infra.FindProductByUuid;
 import messiasproject.microservicespecialist.product.infra.repository.ProductRepository;
 import messiasproject.microservicespecialist.product.domain.model.ProductEntity;
 import org.springframework.data.domain.Page;
@@ -14,26 +17,19 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ProductService {
 
-    private final ProductRepository repository;
+    private final CreateProduct createProduct;
+    private final FindAllProduct findAllProduct;
+    private final FindProductByUuid findProductByUuid;
 
     public void createProduct(ProductRepresentation product) {
-        ProductEntity productEntity = new ProductEntity();
-        productEntity.setUuid(product.getUuid());
-        productEntity.setName(product.getName());
-        productEntity.setPrice(product.getPrice());
-        repository.save(productEntity);
+        createProduct.create(product);
     }
 
-    public Page<ProductEntity> findAllProduct(Pageable pageable) {
-        return repository.findAll(pageable);
+    public Page<ProductRepresentation> findAllProduct(Pageable pageable) {
+        return findAllProduct.find(pageable);
     }
 
     public ProductRepresentation findByUuid(String uuid){
-        ProductEntity productEntity = repository.findByUuid(uuid).orElseThrow(() -> new RecordDoesntExist(new Object[]{uuid}));
-        ProductRepresentation productRepresentation = new ProductRepresentation();
-        productRepresentation.setName(productEntity.getName());
-        productRepresentation.setUuid(uuid);
-        productRepresentation.setPrice(productEntity.getPrice());
-        return productRepresentation;
+        return findProductByUuid.find(uuid);
     }
 }
