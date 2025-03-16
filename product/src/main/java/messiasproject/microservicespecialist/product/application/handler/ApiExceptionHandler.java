@@ -47,13 +47,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     private ResponseEntity<Object> handlerValidationInternal(HttpStatus status, BindingResult bindingResult, String message){
         FieldError fieldError = bindingResult.getFieldError();
-        String nomeDoCampo = "O campo (".concat(fieldError.getField()).concat(") ");
-        String messageUser;
-        if (fieldError.getCode().contains("Min") || fieldError.getCode().contains("Max")){
-            messageUser = nomeDoCampo.concat(messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()));
-        }else {
-            messageUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-        }
+        String messageUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 
         Problem problem = Problem.builder()
                 .status(status.value())

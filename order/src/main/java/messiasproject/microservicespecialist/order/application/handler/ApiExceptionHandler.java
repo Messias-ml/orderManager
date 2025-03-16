@@ -45,7 +45,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ListEmptyException.class)
     public ResponseEntity<Problem> hendlerListEmptyException(ListEmptyException listEmptyException) {
         String nameErro = "Lista vazia";
-        Problem problem = getProblem(listEmptyException.getMessage(),null,
+        Problem problem = getProblem(listEmptyException.getMessage(), null,
                 nameErro, HttpStatus.BAD_REQUEST.value());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST.value()).body(problem);
     }
@@ -53,7 +53,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(FeignException.NotFound.class)
     public ResponseEntity<Problem> hendlerFeignNotFound() {
         String nameErro = "Recurso não encontrado";
-        Problem problem = getProblem(FEIGN_RECORD_NOR_FOUND.getMessage(),null,
+        Problem problem = getProblem(FEIGN_RECORD_NOR_FOUND.getMessage(), null,
                 nameErro, HttpStatus.NOT_FOUND.value());
         return ResponseEntity.status(HttpStatus.NOT_FOUND.value()).body(problem);
     }
@@ -61,25 +61,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(FeignException.class)
     public ResponseEntity<Problem> hendlerFeignServiceUnavailable() {
         String nameErro = "Sistema indisponivel";
-        Problem problem = getProblem(FEIGN_SERVICE_UNAVAILABLE.getMessage(),null,
+        Problem problem = getProblem(FEIGN_SERVICE_UNAVAILABLE.getMessage(), null,
                 nameErro, HttpStatus.SERVICE_UNAVAILABLE.value());
         return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE.value()).body(problem);
     }
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request){
-    return handlerValidationInternal(HttpStatus.BAD_REQUEST, ex.getBindingResult(),MENSAGE_ERRO_VALIDATION.getMessage());
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+        return handlerValidationInternal(HttpStatus.BAD_REQUEST, ex.getBindingResult(), MENSAGE_ERRO_VALIDATION.getMessage());
     }
 
-    private ResponseEntity<Object> handlerValidationInternal(HttpStatus status, BindingResult bindingResult, String message){
+    private ResponseEntity<Object> handlerValidationInternal(HttpStatus status, BindingResult bindingResult, String message) {
         FieldError fieldError = bindingResult.getFieldError();
-        String nomeDoCampo = "O campo (".concat(fieldError.getField()).concat(") ");
-        String messageUser;
-        if (fieldError.getCode().contains("Min") || fieldError.getCode().contains("Max")){
-            messageUser = nomeDoCampo.concat(messageSource.getMessage(fieldError, LocaleContextHolder.getLocale()));
-        }else {
-            messageUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-        }
+        String messageUser = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
 
         Problem problem = Problem.builder()
                 .status(status.value())

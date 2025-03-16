@@ -4,7 +4,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
-import messiasproject.microservicespecialist.product.domain.model.ProductEntity;
 import messiasproject.microservicespecialist.product.domain.service.ProductService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +28,7 @@ public class ProductController {
 
     @GetMapping
     public Page<ProductRepresentation> findAllProduct(@PageableDefault(sort = "name",
-            direction = Sort.Direction.DESC) Pageable pageable) {
+            direction = Sort.Direction.ASC) Pageable pageable) {
         return service.findAllProduct(pageable);
     }
 
