@@ -23,7 +23,6 @@ public class ItemOrderDTO {
 
     @NotBlank(message = "{erro.msg.notNull}")
     @Size(min = 13, max = 13, message = "{erro.msg.uuidProduct}")
-    @Pattern(regexp = "[A-Za-z0-9]+", message = "{erro.msg.regex}")
     @Schema(name = "uuidProduct", description = "uuid do produto", example = "op-1634925MDY")
     private String uuidProduct;
 }
