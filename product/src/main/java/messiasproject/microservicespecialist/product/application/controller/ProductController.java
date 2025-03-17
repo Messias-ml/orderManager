@@ -3,6 +3,7 @@ package messiasproject.microservicespecialist.product.application.controller;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import messiasproject.microservicespecialist.product.application.model.CodeProduct;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
 import messiasproject.microservicespecialist.product.domain.service.ProductService;
 import org.springframework.data.domain.Page;
@@ -22,8 +23,8 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createProduct(@RequestBody @Valid ProductRepresentation product){
-        service.createProduct(product);
+    public CodeProduct createProduct(@RequestBody @Valid ProductRepresentation product){
+        return service.createProduct(product);
     }
 
     @GetMapping

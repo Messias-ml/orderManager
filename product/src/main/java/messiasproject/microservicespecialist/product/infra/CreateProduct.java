@@ -1,8 +1,9 @@
 package messiasproject.microservicespecialist.product.infra;
 
+import messiasproject.microservicespecialist.product.application.model.CodeProduct;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
 
 public interface CreateProduct {
 
-    void create(ProductRepresentation product);
+    CodeProduct create(ProductRepresentation product);
 }

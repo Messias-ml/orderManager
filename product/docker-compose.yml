@@ -9,3 +9,9 @@ services:
       - 'MYSQL_USER=messiasApi'
     ports:
       - '3307:3306'
+
+  redis:
+    image: 'redis:latest'
+    container_name: 'redis-caching'
+    ports:
+      - "6379:6379"

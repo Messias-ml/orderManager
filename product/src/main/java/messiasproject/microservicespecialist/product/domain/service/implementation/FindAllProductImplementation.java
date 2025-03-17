@@ -2,13 +2,12 @@ package messiasproject.microservicespecialist.product.domain.service.implementat
 
 
 import lombok.RequiredArgsConstructor;
+import messiasproject.microservicespecialist.product.application.model.PageImplSerializable;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
-import messiasproject.microservicespecialist.product.config.util.modelmapper.ModelMapperConvert;
 import messiasproject.microservicespecialist.product.domain.model.ProductEntity;
 import messiasproject.microservicespecialist.product.infra.FindAllProduct;
 import messiasproject.microservicespecialist.product.infra.repository.ProductRepository;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
@@ -26,6 +25,6 @@ public class FindAllProductImplementation implements FindAllProduct {
     public Page<ProductRepresentation> find(Pageable pageable) {
         Page<ProductEntity> pageProductEntity = repository.findAll(pageable);
         List<ProductRepresentation> listProductRepresentation = convertList(pageProductEntity.getContent(), ProductRepresentation.class);
-        return new PageImpl<>(listProductRepresentation, pageable, listProductRepresentation.size());
+        return new PageImplSerializable<>(listProductRepresentation, pageable.getPageNumber(), pageable.getPageSize(), listProductRepresentation.size());
     }
 }

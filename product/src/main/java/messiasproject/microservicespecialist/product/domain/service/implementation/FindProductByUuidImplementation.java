@@ -19,7 +19,7 @@ public class FindProductByUuidImplementation implements FindProductByUuid {
         ProductEntity productEntity = repository.findByUuid(uuid).orElseThrow(() -> new RecordDoesntExist(new Object[]{uuid}));
         ProductRepresentation productRepresentation = new ProductRepresentation();
         productRepresentation.setName(productEntity.getName());
-        productRepresentation.setUuid(uuid);
+        productRepresentation.setUuid(productEntity.getUuid());
         productRepresentation.setPrice(productEntity.getPrice());
         return productRepresentation;
     }
