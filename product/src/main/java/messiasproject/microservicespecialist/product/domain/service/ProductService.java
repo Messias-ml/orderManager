@@ -28,13 +28,11 @@ public class ProductService {
 
     @Cacheable(value = "product", key = "#pageable.pageNumber + '-' + #pageable.pageSize + '-' + #pageable.sort.toString()")
     public Page<ProductRepresentation> findAllProduct(Pageable pageable) {
-        System.out.println("Não cacheou");
         return findAllProduct.find(pageable);
     }
 
     @Cacheable(value = "productByUuid", key = "#uuid")
     public ProductRepresentation findByUuid(String uuid){
-        System.out.println("Não cacheou uuid");
         return findProductByUuid.find(uuid);
     }
 }

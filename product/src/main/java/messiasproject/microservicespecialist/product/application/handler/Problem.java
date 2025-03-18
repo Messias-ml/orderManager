@@ -12,8 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Schema(description = "Detalhes do problema de erro")
 public class Problem {
+
     @Schema(example = "400", description = "status http do erro")
     private Integer status;
+
     @Schema(example = "Registro não existente", description = "titulo do erro")
     private String title;
 

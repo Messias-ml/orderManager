@@ -1,4 +1,4 @@
-package messiasproject.microservicespecialist.product.application.model;
+package messiasproject.microservicespecialist.product.infra;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -19,5 +19,4 @@ public class PageImplSerializable<T> extends PageImpl<T> {
             @JsonProperty("totalElements") long total) {
         super(content, PageRequest.of(page, size), total);
     }
-
 }

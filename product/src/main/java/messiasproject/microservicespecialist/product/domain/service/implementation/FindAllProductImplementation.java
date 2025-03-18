@@ -2,7 +2,7 @@ package messiasproject.microservicespecialist.product.domain.service.implementat
 
 
 import lombok.RequiredArgsConstructor;
-import messiasproject.microservicespecialist.product.application.model.PageImplSerializable;
+import messiasproject.microservicespecialist.product.infra.PageImplSerializable;
 import messiasproject.microservicespecialist.product.application.model.ProductRepresentation;
 import messiasproject.microservicespecialist.product.domain.model.ProductEntity;
 import messiasproject.microservicespecialist.product.infra.FindAllProduct;
