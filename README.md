@@ -37,11 +37,11 @@ O nosso sistema por sua vez vai calcular o pedido e fazer todo gerenciamento del
 ![](https://img.shields.io/badge/version-latest-blue.svg)
 
 
-> <h3 style="font-weight:800"> Como subir a aplicação:</h3>
+> <h3 style="font-weight:800"> Como subir as aplicações (serve para Order, Product e ItemOrder):</h3>
 >
 > - 1° Starta o Eureka Server
-> - 2° Executar o comando docker-compose up no arquivo resource da aplicação Order, para startar o mySql (cd C:\suaPasta\orderManager\order\src\main\resources\)
-> - 3° Starta o OrderApplication
+> - 2° Abra o terminal da sua IDE e executa o comando docker-compose up, para startar o mySql, redis a depender do projeto que suba. 
+> - 3° Starta a aplicação que deseja (Order, ItemOrder, Product)
 > - 4° Starta o Gateway
 > - 5° Espera pelo menos 3 minutos antes de efetuar sua primeira requisição, pois o gateway precisa de tempo.
 
